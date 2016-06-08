@@ -1,0 +1,11 @@
+attributes: 
+  metadata: 
+    label: "Zaqar Service" 
+    weight: 90
+    db_password:
+      generator: "password"
+    user_password:
+      generator: "password"
+    rabbit_password:
+      generator: "password"
+    rabbit_user: "zaqar"

@@ -1,2 +1,4 @@
-# fuel-plugin-zaqar
-Fuel Plugin for Openstack Zaqar
+fuel-plugin-zaqar
+============
+
+Plugin description

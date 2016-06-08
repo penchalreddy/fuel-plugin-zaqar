@@ -1,0 +1,18 @@
+zaqar:
+  # Role name
+  name: "Zaqar"
+  # Role description
+  description: "Zaqar"
+  # If primaty then during orchestration this role will be
+  # splitted into primary-role and role
+  has_primary: false
+  # Assign public IP to node if true
+  public_ip_required: false
+  # Weight that will be used to sort out the
+  # roles on the Fuel web UI
+  weight: 100
+  update_required:
+    - zaqar
+    - controller
+  conflicts:
+    - controller
