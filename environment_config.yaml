@@ -1,11 +1,110 @@
-attributes: 
-  metadata: 
-    label: "Zaqar Service" 
-    weight: 90
-    db_password:
-      generator: "password"
-    user_password:
-      generator: "password"
-    rabbit_password:
-      generator: "password"
-    rabbit_user: "zaqar"
+attributes:
+  metadata:
+    # Settings group can be one of "general", "security", "compute", "network",
+    # "storage", "logging", "openstack_services" and "other".
+    group: 'openstack_services'
+    label: 'Zaqar Settings'
+
+  domain_name:
+    value: 'zaqar'
+    label: 'Domain Name'
+    description: ''
+    weight: 10
+    type: "text"
+    regex:
+      source: '^[\S]{4,}$'
+      error: "Domain name length should not be less than 4 characters"
+    restrictions:
+      - action: hide
+        condition: settings:fuel-plugin-zaqar.metadata.enabled == false
+
+  domain_admin:
+    value: 'zaqar_admin'
+    label: 'Domain Admin'
+    description: 'Username for Administrator'
+    weight: 11
+    type: "text"
+    regex:
+      source: '^[\S]{4,}$'
+      error: "Username length should not be less than 4 characters"
+    restrictions:
+      - action: hide
+        condition: settings:fuel-plugin-zaqar.metadata.enabled == false
+
+  domain_password:
+    label: 'Domain Password'
+    description: 'Password for Administrator'
+    weight: 12
+    type: 'password'
+    value: 'NN2eNK27rPLQM2cf2ixatJrNPnwc'
+    regex:
+      source: '^[\S]{8,}$'
+      error: "Domain Password length should not be less than 8 characters"
+    restrictions:
+      - action: hide
+        condition: settings:fuel-plugin-zaqar.metadata.enabled == false
+
+  domain_admin_email:
+    value: 'zaqar_admin@localhost'
+    label: 'Email'
+    description: 'Email address for Administrator'
+    weight: 13
+    type: "text"
+    regex:
+      source: '^\S+@\S+$'
+      error: "Invalid Email"
+    restrictions:
+      - action: hide
+        condition: settings:fuel-plugin-zaqar.metadata.enabled == false
+
+  auth_name:
+    value: 'zaqar'
+    label: 'Username'
+    description: 'Username for zaqar user'
+    weight: 20
+    type: "text"
+    regex:
+      source: '^[\S]{4,}$'
+      error: "Username length should not be less than 4 characters"
+    restrictions:
+      - action: hide
+        condition: settings:fuel-plugin-zaqar.metadata.enabled == false
+
+  auth_password:
+    label: 'Password'
+    description: 'Password for Zaqar user'
+    weight: 21
+    type: 'password'
+    value: 'NN2eNK27rPLQM2cf2JrNPnwc'
+    regex:
+      source: '^[\S]{8,}$'
+      error: "Password length should not be less than 8 characters"
+    restrictions:
+      - action: hide
+        condition: settings:fuel-plugin-zaqar.metadata.enabled == false
+
+  db_password:
+    label: 'DB Password'
+    description: 'Zaqar Database user password'
+    weight: 22
+    type: 'password'
+    value: 'nupTgLU9a6SdxagyFCBnsMfYH7Ag'
+    regex:
+      source: '^[\S]{8,}$'
+      error: "Password length should not be less than 8 characters"
+    restrictions:
+      - action: hide
+        condition: settings:fuel-plugin-zaqar.metadata.enabled == false
+
+  rabbit_password:
+    label: 'RabbitMQ Password'
+    description: 'RabbitMQ Zaqar user password'
+    weight: 24
+    type: 'password'
+    value: '9sk9rhagjuhXWbZnxmBFfhGtrGfP'
+    regex:
+      source: '^[\S]{8,}$'
+      error: "Password length should not be less than 8 characters"
+    restrictions:
+      - action: hide
+        condition: settings:fuel-plugin-zaqar.metadata.enabled == false

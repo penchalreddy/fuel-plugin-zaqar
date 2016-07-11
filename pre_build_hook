@@ -3,3 +3,24 @@
 # Add here any the actions which are required before plugin build
 # like packages building, packages downloading from mirrors and so on.
 # The script should return 0 if there were no errors.
+
+set -eux
+
+. "$(dirname "$(readlink -f "$0")")"/functions.sh
+
+
+# Packages needed for OpenStack Zaqar services from stable/mitaka.
+download_package http://ubuntu-cloud.archive.canonical.com/ubuntu/pool/main/z/zaqar/python-zaqar_2.0.0-1~cloud0_all.deb \
+http://ubuntu-cloud.archive.canonical.com/ubuntu/pool/main/z/zaqar/zaqar-common_2.0.0-1~cloud0_all.deb \
+http://ubuntu-cloud.archive.canonical.com/ubuntu/pool/main/z/zaqar/zaqar-server_2.0.0-1~cloud0_all.deb
+
+# Puppet modules needed for OpenStack Zaqar services from master.
+ZAQAR_REF="master"
+ZAQAR_TARBALL_URL="https://github.com/openstack/puppet-zaqar/archive/${ZAQAR_REF}.tar.gz"
+download_puppet_module "zaqar" ${ZAQAR_TARBALL_URL}
+
+#Oslo puppet module to work zaqar puppet on Fuel 9.0
+OSLO_REF="9.0.0"
+OSLO_TARBALL_URL="https://github.com/openstack/puppet-oslo/archive/${OSLO_REF}.tar.gz"
+download_puppet_module "oslo" ${OSLO_TARBALL_URL}
+
