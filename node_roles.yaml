@@ -2,17 +2,20 @@ zaqar:
   # Role name
   name: "Zaqar"
   # Role description
-  description: "Zaqar"
-  # If primaty then during orchestration this role will be
-  # splitted into primary-role and role
-  has_primary: false
+  description:
+       Zaqar is an OpenStack project which offers qaas messaging
+       for deploying and managing messages as first class resources in OpenStack.
+  # If primary then during orchestration this role will be
+  # separated into primary-role and role
+  has_primary: true
   # Assign public IP to node if true
   public_ip_required: false
   # Weight that will be used to sort out the
   # roles on the Fuel web UI
-  weight: 100
-  update_required:
-    - zaqar
-    - controller
-  conflicts:
-    - controller
+  weight: 1000
+  limits:
+    recommended: 3
+    min: 0
+  restrictions:
+    - condition: "settings:fuel-plugin-zaqar.metadata.enabled == false"
+      action: hide
